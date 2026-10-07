@@ -1,6 +1,7 @@
-import { Stack } from 'expo-router';
-import { PaperProvider, MD3DarkTheme } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Stack } from 'expo-router';
+import { MD3DarkTheme, PaperProvider } from 'react-native-paper';
+import { PlaylistProvider } from '../context/PlaylistContext';
 
 export default function RootLayout() {
   return (
@@ -10,10 +11,12 @@ export default function RootLayout() {
         icon: (props) => <MaterialCommunityIcons {...props} />,
       }}
     >
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(tabs)" />
-        <Stack.Screen name="reproductor" options={{ presentation: 'card' }} />
-      </Stack>
+      <PlaylistProvider>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="reproductor" options={{ presentation: 'card' }} />
+        </Stack>
+      </PlaylistProvider>
     </PaperProvider>
   );
 }
